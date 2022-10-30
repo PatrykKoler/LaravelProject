@@ -26,12 +26,14 @@
               Products
             </a>
           </li>
+          @can('isAdmin')
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="users"></span>
               Customers
             </a>
           </li>
+          @endcan
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="bar-chart-2"></span>
