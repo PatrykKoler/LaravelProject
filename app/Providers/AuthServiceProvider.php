@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->defineUserRoleGate('isAdmin',UserRole::ADMIN);
         $this->defineUserRoleGate('isTeacher',UserRole::TEACHER);
-        $this->defineUserRoleGate('isUser',UserRole::USER);
+        $this->defineUserRoleGate('isStudent',UserRole::STUDENT);
     }
 
     private function defineUserRoleGate(string $name, string $role): void
