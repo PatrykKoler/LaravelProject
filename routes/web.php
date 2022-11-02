@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dash');
-// });
+Route::get('/classes', function () {
+    return view('classes');
+})->middleware('auth');
 
-Route::get('/dash', function () {
-    return view('dash');
-});
+Route::get('/grades', function () {
+    return view('grades');
+})->middleware('auth');
 
 Auth::routes();
 
