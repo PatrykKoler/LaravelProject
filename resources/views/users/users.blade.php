@@ -1,6 +1,6 @@
 @extends('dash')
 @section('users')
-    <div class="contaner">
+    <div class="container">
         <table class="table table-hover"> 
             <thead>
                 <tr>
