@@ -84,9 +84,9 @@
           @if(Gate::check('isAdmin'))
           <li class="nav-item">
           <a class="nav-link
-              @if(Request::getPathInfo() == '/register')
+              @if(Request::getPathInfo() == '/users')
                 active
-              @endif" href="/register">
+              @endif" href="/users">
               <span data-feather="users"></span>
               Users
             </a>
@@ -127,8 +127,8 @@
         @yield('grades')
       @endif
 
-      @if(Request::getPathInfo() == '/register')
-        @yield('register')
+      @if(Request::getPathInfo() == '/users')
+        @yield('users')
       @endif
       
 

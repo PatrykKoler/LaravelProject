@@ -10,7 +10,7 @@
         <div class="row align-items-center">
           <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
             <h4>Users</h4>
-            <a href="/register"><img src="https://cdn-icons-png.flaticon.com/512/2146/2146937.png" class="main-img p-4"></a>
+            <a href="/users"><img src="https://cdn-icons-png.flaticon.com/512/2146/2146937.png" class="main-img p-4"></a>
           </div>
           <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
             <h4>Grades</h4>

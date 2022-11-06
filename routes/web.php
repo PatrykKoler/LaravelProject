@@ -25,3 +25,4 @@ Route::get('/grades', function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->middleware(['auth','can:isAdmin']);
