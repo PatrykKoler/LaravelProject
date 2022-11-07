@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,5 @@ Route::get('/grades', function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->middleware(['auth','can:isAdmin']);
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth','can:isAdmin']);
+Route::get('/users/{id}', [UserController::class, 'destroy'])->middleware(['auth','can:isAdmin']);

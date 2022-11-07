@@ -18,10 +18,30 @@
                     <td>{{$user->name}} </td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-danger btn-sm delete" data-id="{{$user->id}}">
+                            X
+                        </button>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+@endsection 
+@section('javascript')
+$(document).ready(function () {
+    $('.delete').click(function() {
+        $.ajax({
+            method: "DELETE",
+            url: "http://127.0.0.1:8000/users/" + $(this).data("id")
+        })
+        .done(function(response) {
+            window.location.reload();
+        })
+        .fail(function (response) {
+            alert("ERROR");
+        });
+    });
+});
 @endsection 
