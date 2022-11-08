@@ -4,6 +4,7 @@
         <a href="users/register">
             <button type="button" class="btn btn-primary btn-lg btn-block">Dodaj użytkownika</button>
         </a>
+        <h1 class="h1">Lista użytkowników</h1>
         <table class="table table-hover"> 
             <thead>
                 <tr>
@@ -30,6 +31,27 @@
             @endforeach
             </tbody>
         </table>
+        <h1 class="h1">Archiwum</h1>
+        <table class="table"> 
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Rola</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($usersDelete as $userdelete)
+                <tr class="table-dark">
+                    <td scope="row">{{$userdelete->id}}</td>
+                    <td>{{$userdelete->name}} </td>
+                    <td>{{$userdelete->email}}</td>
+                    <td>{{$userdelete->role}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection 
 @section('javascript')
@@ -37,7 +59,7 @@ $(document).ready(function () {
     $('.delete').click(function() {
         $.ajax({
             type: 'DELETE',
-            url: "http://127.0.0.1:8000/users/" + $(this).data("id")
+            url: "./users/" + $(this).data("id")
         })
         .done(function(response) {
             window.location.reload();

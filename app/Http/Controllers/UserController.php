@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         return view('users.users', [
-            'users' => User::all()
+            'users' => User::all(),
+            'usersDelete'=> User::onlyTrashed()->get(),
         ]);
 
     }
