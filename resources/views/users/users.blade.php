@@ -1,10 +1,17 @@
 @extends('dash')
 @section('users')
     <div class="container">
-        <a href="users/register">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Dodaj użytkownika</button>
-        </a>
-        <h1 class="h1">Lista użytkowników</h1>
+        <div class="row">
+            <div class="col-6">
+                <h1>Lista użytkowników</h1>
+            </div>
+            <div class="col-6">
+                <h1 class="float-end" href="users/register">
+                    <button type="button" class="btn btn-primary">Dodaj</button>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
         <table class="table table-hover"> 
             <thead>
                 <tr>
@@ -31,7 +38,11 @@
             @endforeach
             </tbody>
         </table>
-        <h1 class="h1">Archiwum</h1>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h1>Archiwum</h1>
+            </div>
         <table class="table"> 
             <thead>
                 <tr class="table-dark">
@@ -52,6 +63,7 @@
             @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 @endsection 
 @section('javascript')
