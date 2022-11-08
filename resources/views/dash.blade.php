@@ -131,6 +131,9 @@
         @yield('users')
       @endif
       
+      @if(Request::getPathInfo() == '/users/register')
+        @yield('register')
+      @endif
 
     </main>
     

@@ -1,6 +1,9 @@
 @extends('dash')
 @section('users')
     <div class="container">
+        <a href="users/register">
+            <button type="button" class="btn btn-primary btn-lg">Dodaj użytkownika</button>
+        </a>
         <table class="table table-hover"> 
             <thead>
                 <tr>

@@ -2,7 +2,7 @@
 
 @section('register')
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Add new user</h1>
+            <h1 class="h2">Dodanie nowego użytkownika</h1>
         </div>
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -83,7 +83,5 @@
                 </div>
             </div>
         </form>
-        
-        #TODO dodac liste wszystkich userów
         #TODO po dodaniu nowego usera nie moze byc przekieorwania na strone główna | zostaje na /register z odpowiednim komunikatem
 @endsection  
