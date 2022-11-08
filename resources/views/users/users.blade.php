@@ -2,7 +2,7 @@
 @section('users')
     <div class="container">
         <a href="users/register">
-            <button type="button" class="btn btn-primary btn-lg">Dodaj użytkownika</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block">Dodaj użytkownika</button>
         </a>
         <table class="table table-hover"> 
             <thead>
@@ -36,7 +36,7 @@
 $(document).ready(function () {
     $('.delete').click(function() {
         $.ajax({
-            method: "DELETE",
+            type: 'DELETE',
             url: "http://127.0.0.1:8000/users/" + $(this).data("id")
         })
         .done(function(response) {
