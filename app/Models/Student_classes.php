@@ -4,25 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Teacher_classes extends Model
+class Student_classes extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'class_name',
+        'teacher_classes_id',
         'user_id',
     ];
 
-    public function user(): BelongsTo
+    public function teacher_classes(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->HasMany(Teacher_classes::class);
     }
 
-    public function student_classes(): HasMany{
-        return $this->HasMany(Student_classes::class);
+    public function user(): HasMany
+    {
+        return $this->HasMany(User::class);
     }
 }

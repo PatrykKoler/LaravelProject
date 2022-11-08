@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentClasssesTable extends Migration
+class AddSoftDeleteToTeacherClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateStudentClasssesTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_classes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('teacher_classes_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->timestamps();
+        Schema::table('teacher_classes', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateStudentClasssesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_classes');
+        Schema::table('teacher_classes', function (Blueprint $table) {
+            $table->dropsoftDeletes();
+        });
     }
 }

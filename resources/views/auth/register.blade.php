@@ -83,7 +83,5 @@
                 </div>
             </div>
         </form>
-        
-        #TODO dodac liste wszystkich userów
         #TODO po dodaniu nowego usera nie moze byc przekieorwania na strone główna | zostaje na /register z odpowiednim komunikatem
 @endsection  

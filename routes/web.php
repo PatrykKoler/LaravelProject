@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GradesController;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/classes', function () {
-    return view('classes');
-})->middleware('auth');
-
-Route::get('/grades', function () {
-    return view('grades');
-})->middleware('auth');
-
 Auth::routes();
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/classes', [ClassesController::class, 'index']);
+    Route::get('/grades', [GradesController::class, 'index']);
+    Route::middleware(['can:isAdmin'])->group(function(){
+        Route::delete('/users/{id}', [UserController::class, 'destroy']);
+        Route::get('/users/register', [RegisterController::class, 'index']);
+    });
+});

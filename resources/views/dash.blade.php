@@ -84,9 +84,9 @@
           @if(Gate::check('isAdmin'))
           <li class="nav-item">
           <a class="nav-link
-              @if(Request::getPathInfo() == '/register')
+              @if(Request::getPathInfo() == '/users')
                 active
-              @endif" href="/register">
+              @endif" href="/users">
               <span data-feather="users"></span>
               Users
             </a>
@@ -127,10 +127,13 @@
         @yield('grades')
       @endif
 
-      @if(Request::getPathInfo() == '/register')
-        @yield('register')
+      @if(Request::getPathInfo() == '/users')
+        @yield('users')
       @endif
       
+      @if(Request::getPathInfo() == '/users/register')
+        @yield('register')
+      @endif
 
     </main>
     
@@ -138,6 +141,11 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script type="text/javascript">
+      @yield('javascript')
+  </script>
+</body>
 </html>
