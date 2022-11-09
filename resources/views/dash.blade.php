@@ -38,13 +38,6 @@
     <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/dashboard.css" rel="stylesheet">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <script>
-        if ( document.getElementById("sidebarMenu").className = 'col-md-3 col-lg-2 d-md-block bg-light sidebar collapse' ){
-          console.log("dziala");
-        }
-    </script>
-
   </head>
   <body>
     
@@ -76,7 +69,7 @@
             <a class="nav-link
               @if(Request::getPathInfo() == '/')
                 active
-              @endif" href="./">
+              @endif" href="/">
               <span data-feather="home"></span>
               Dashboard
             </a>
@@ -84,7 +77,7 @@
           @if(Gate::check('isAdmin'))
           <li class="nav-item">
           <a class="nav-link
-              @if(Request::getPathInfo() == '/users')
+              @if(Request::getPathInfo() == '/users' || Request::getPathInfo() == '/users/register')
                 active
               @endif" href="/users">
               <span data-feather="users"></span>
@@ -114,32 +107,11 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
-      @if(Request::getPathInfo() == '/')
-        @yield('welcome')
-      @endif
-
-      @if(Request::getPathInfo() == '/classes')
-        @yield('classes')
-      @endif
-
-      @if(Request::getPathInfo() == '/grades')
-        @yield('grades')
-      @endif
-
-      @if(Request::getPathInfo() == '/users')
-        @yield('users')
-      @endif
-      
-      @if(Request::getPathInfo() == '/users/register')
-        @yield('register')
-      @endif
-
-      @if(Request::getPathInfo() == '/users/edit')
-        @yield('edit')
-      @endif
-    </main>
     
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+      @yield('body')
+    </main>
+
   </div>
 </div>
 

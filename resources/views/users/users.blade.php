@@ -1,11 +1,12 @@
 @extends('dash')
-@section('users')
+
+@section('body')
     
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Users</h1>
             <div class="col-6">
-                <a class="float-end p-2"href="users/register">
-                    <button type="button" class="btn btn-primary">Dodaj</button>
+                <a class="float-end p-2" href="users/register">
+                   <img src="https://cdn-icons-png.flaticon.com/32/1387/1387940.png" style="width:32px;height:32px;">
                 </a>
             </div>
         </div>
@@ -29,10 +30,9 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
                     <td>
-                        <a href="{{ route('users.edit', $user->id) }}">
-                            <button class="btn btn-secondary btn-sm">E</button>
-                        </a>
-                        <button class="btn btn-danger btn-sm delete" data-id="{{$user->id}}">X</button>
+                        <button class="btn btn-sm" onclick="window.location.href='{{ route('users.edit', $user->id) }}';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+
+                        <button class="btn btn-sm delete" data-id="{{$user->id}}"><img src="https://cdn-icons-png.flaticon.com/32/748/748138.png" style="width:32px;height:32px;"></button>
                     </td>
                 </tr>
             @endforeach
@@ -45,9 +45,9 @@
         </div>
         <div class="container">
             <div class="row">
-            <table class="table"> 
+            <table class="table table-dark table-striped"> 
                 <thead>
-                    <tr class="table-dark">
+                    <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mail</th>
@@ -56,7 +56,7 @@
                 </thead>
                 <tbody>
                 @foreach($usersDelete as $userdelete)
-                    <tr class="table-dark">
+                    <tr>
                         <td scope="row">{{$userdelete->id}}</td>
                         <td>{{$userdelete->name}} </td>
                         <td>{{$userdelete->email}}</td>

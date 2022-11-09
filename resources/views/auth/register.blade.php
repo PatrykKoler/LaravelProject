@@ -1,8 +1,13 @@
 @extends('dash')
 
-@section('register')
+@section('body')
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Add new user</h1>
+            <div class="col-6">
+                <a class="float-end p-2" href="/users">
+                   <img src="https://cdn-icons-png.flaticon.com/32/150/150519.png" style="width:32px;height:32px;">
+                </a>
+            </div>
         </div>
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -83,5 +88,5 @@
                 </div>
             </div>
         </form>
-        #odpowiedni komunikatem o stworzeniu użytkownika lub jego usunięciu
+        #odpowiedni komunikatem o stworzeniu użytkownika
 @endsection  
