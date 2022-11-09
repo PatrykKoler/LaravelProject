@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -62,7 +62,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('users.edit', [
+            'user' => User::all(),
+        ]);
     }
 
     /**
