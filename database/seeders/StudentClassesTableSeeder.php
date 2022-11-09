@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Student_classses;
+use App\Models\Student_classes;
 use Illuminate\Database\Seeder;
 
 class StudentClassesTableSeeder extends Seeder
@@ -29,7 +29,7 @@ class StudentClassesTableSeeder extends Seeder
             ],
         ];
         foreach($student_classes as $key =>$value){
-            Student_classses::create($value);
+            Student_classes::create($value);
         }
     }
 }
