@@ -83,5 +83,5 @@
                 </div>
             </div>
         </form>
-        #TODO po dodaniu nowego usera nie moze byc przekieorwania na strone główna | zostaje na /register z odpowiednim komunikatem
+        #odpowiedni komunikatem o stworzeniu użytkownika lub jego usunięciu
 @endsection  
