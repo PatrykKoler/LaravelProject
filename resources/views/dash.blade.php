@@ -135,6 +135,9 @@
         @yield('register')
       @endif
 
+      @if(Request::getPathInfo() == '/users/edit')
+        @yield('edit')
+      @endif
     </main>
     
   </div>

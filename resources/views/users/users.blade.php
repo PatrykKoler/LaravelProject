@@ -30,9 +30,10 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
                     <td>
-                        <button class="btn btn-danger btn-sm delete" data-id="{{$user->id}}">
-                            X
-                        </button>
+                        <a href="{{ route('users.edit', $user->id) }}">
+                            <button class="btn btn-secondary btn-sm">E</button>
+                        </a>
+                        <button class="btn btn-danger btn-sm delete" data-id="{{$user->id}}">X</button>
                     </td>
                 </tr>
             @endforeach

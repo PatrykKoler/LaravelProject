@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -57,13 +58,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  User $user
+     * @return View
      */
-    public function edit($id)
+    public function edit(User $user): View
     {
         return view('users.edit', [
-            'user' => User::all(),
+            'user' => $user,
         ]);
     }
 

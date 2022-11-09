@@ -22,11 +22,13 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/users', [UserController::class, 'index']);
     Route::get('/classes', [ClassesController::class, 'index']);
     Route::get('/grades', [GradesController::class, 'index']);
     Route::middleware(['can:isAdmin'])->group(function(){
+        Route::get('/users', [UserController::class, 'index']);
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
         Route::get('/users/register', [RegisterController::class, 'index']);
+        Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
     });
 });
