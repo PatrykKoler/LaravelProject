@@ -14,7 +14,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        return view('classes');
+        return view('classes.classes');
     }
 
     /**
@@ -55,9 +55,9 @@ class ClassesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('classes.edit');
     }
 
     /**
