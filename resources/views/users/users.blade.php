@@ -6,9 +6,9 @@
                 <h1>Lista użytkowników</h1>
             </div>
             <div class="col-6">
-                <h1 class="float-end" href="users/register">
+                <a class="float-end p-2"href="users/register">
                     <button type="button" class="btn btn-primary">Dodaj</button>
-                </h1>
+                </a>
             </div>
         </div>
         <div class="row">
