@@ -1,25 +1,24 @@
 @extends('dash')
 @section('users')
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h1>Lista użytkowników</h1>
-            </div>
+    
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Users</h1>
             <div class="col-6">
                 <a class="float-end p-2"href="users/register">
                     <button type="button" class="btn btn-primary">Dodaj</button>
                 </a>
             </div>
         </div>
+    <div class="container">
         <div class="row">
         <table class="table table-hover"> 
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nazwa</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Rola</th>
-                    <th scope="col">Akcje</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,31 +38,34 @@
             </tbody>
         </table>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <h1>Archiwum</h1>
-            </div>
-        <table class="table"> 
-            <thead>
-                <tr class="table-dark">
-                    <th scope="col">#</th>
-                    <th scope="col">Nazwa</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Rola</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach($usersDelete as $userdelete)
-                <tr class="table-dark">
-                    <td scope="row">{{$userdelete->id}}</td>
-                    <td>{{$userdelete->name}} </td>
-                    <td>{{$userdelete->email}}</td>
-                    <td>{{$userdelete->role}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+    </div>   
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Users archive</h1>
         </div>
+        <div class="container">
+            <div class="row">
+            <table class="table"> 
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($usersDelete as $userdelete)
+                    <tr class="table-dark">
+                        <td scope="row">{{$userdelete->id}}</td>
+                        <td>{{$userdelete->name}} </td>
+                        <td>{{$userdelete->email}}</td>
+                        <td>{{$userdelete->role}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            </div>
+        </div> 
     </div>
 @endsection 
 @section('javascript')
