@@ -1,18 +1,26 @@
 @extends('dash')
 
-@section('title', 'Classes edit')
+@section('title', 'Add grade')
 
 @section('body')
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Classes edit</h1>
+            <h1 class="h2">Add grade</h1>
             <div class="col-6">
-                <a class="float-end p-2" href="/classes">
+                <a class="float-end p-2" href="/grades">
                    <img src="https://cdn-icons-png.flaticon.com/32/150/150519.png" style="width:32px;height:32px;">
                 </a>
             </div>
         </div>
         <form method="POST" action="{{ route('users.store') }}">
             @csrf
+
+            <div class="row mb-3">
+                <label for="subject" class="col-md-4 col-form-label text-md-end">{{ __('School subject') }}</label>
+
+                <div class="col-md-6">
+                    <input id="subject" type="text" class="form-control" name="subject" value="History" disabled>
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <label for="classes" class="col-md-4 col-form-label text-md-end">{{ __('Classes') }}</label>
@@ -23,33 +31,25 @@
             </div>
 
             <div class="row mb-3">
-                <label for="teacher" class="col-md-4 col-form-label text-md-end">{{ __('Supervising teacher') }}</label>
+                <label for="student" class="col-md-4 col-form-label text-md-end">{{ __('Student') }}</label>
 
-                <div class="col-md-3 p-1">
-                    <select id="teacher" type="text" class="form-select" name="teacher"  value="" readonly required>
-                        <option value disabled selected>teacher</option>
-                        @for ($i = 1; $i <= 3; $i++)
-                            <option value="{{ $i }}">teacher {{ $i }}</option>
-                         @endfor
-                    </select>
+                <div class="col-md-6">
+                    <input id="student" type="text" class="form-control" name="student" value="Student 1" disabled>
                 </div>
             </div>
-            <hr>
-            
-            <div class="row mb-3">
-                <label for="student" class="col-md-4 col-form-label text-md-end">{{ __('Student ') }}</label>
-                @for ($y = 0; $y < 5; $y++)
+
+            <div class="row mb-1">
+                <label for="grades" class="col-md-4 col-form-label text-md-end">{{ __('Grades') }}</label>
                 <div class="col-md-1 p-1">
-                    <select id="student" type="text" class="form-select" name="student"  value="" readonly required>
-                        <option value disabled selected>student</option>
+                    <select id="grades" type="text" class="form-select" name="grades"  value="" readonly required>
+                        <option value disabled selected>Grade</option>
                         @for ($i = 1; $i <= 6; $i++)
-                            <option value="{{ $i }}">Student {{ $i }}</option>
-                         @endfor
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
                     </select>
                 </div>
-                @endfor
             </div>
-           
+
             <div class="row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">

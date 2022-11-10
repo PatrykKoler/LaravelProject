@@ -16,7 +16,7 @@
                     <th scope="col">School subject</th>
                     <th scope="col">Students</th>
                     <th rowspan=3 scope="col">Grades</th>
-                    @if(Gate::check('isAdmin'))
+                    @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                       <th scope="col">Action</th>
                     @endif
                 </tr>
@@ -32,9 +32,10 @@
                       <p class="bg-danger p-1 text-white bg-opacity-75" style="width: 32px;">2+</p>
                       <p class="bg-danger p-1 text-white bg-opacity-75" style="width: 32px;">3+</p>
                     </td>
-                    @if(Gate::check('isAdmin'))
+                    @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                     <td>
-                      <button class="btn btn-sm" onclick=""><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+                      <button class="btn btn-sm" onclick="window.location.href='/grades/edit';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+                      <button class="btn btn-sm" onclick="window.location.href='/grades/add';"><img src="https://cdn-icons-png.flaticon.com/512/1237/1237946.png" style="width:32px;height:32px;"></button>
                     </td>
                     @endif
                 </tr>     

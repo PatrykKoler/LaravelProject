@@ -32,5 +32,10 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
         Route::get('/classes/edit', [ClassesController::class, 'edit']);
+
+        Route::get('/grades/edit', [GradesController::class, 'edit']);
+        Route::get('/grades/add', [GradesController::class, 'create']);
+
     });
 });
+
