@@ -12,7 +12,7 @@
         </div>
     <div class="container">
         <div class="row">
-        <table class="table table-hover"> 
+        <table class="table table-hover align-middle"> 
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -45,7 +45,7 @@
         </div>
         <div class="container">
             <div class="row">
-            <table class="table table-dark table-striped"> 
+            <table class="table table-dark table-striped align-middle"> 
                 <thead>
                     <tr>
                         <th scope="col">#</th>

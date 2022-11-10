@@ -45,7 +45,7 @@
 
                 <div class="col-md-6">
                     <select id="role" type="text" class="form-select @error('role') is-invalid @enderror" name="role"  value="{{ old('role') }}" required autocomplete="role" readonly>
-                        <option value disabled>Select role</option>
+                        <option value disabled selected>Select role</option>
                         <option value="admin">Admin</option>
                         <option value="teacher">Teacher</option>
                         <option value="student">Student</option>
