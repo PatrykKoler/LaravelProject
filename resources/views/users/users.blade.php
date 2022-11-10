@@ -1,5 +1,7 @@
 @extends('dash')
 
+@section('title', 'Users')
+
 @section('body')
     
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -45,7 +47,7 @@
         </div>
         <div class="container">
             <div class="row">
-            <table class="table table-dark table-striped align-middle"> 
+            <table class="table table-hover table-dark table-striped align-middle"> 
                 <thead>
                     <tr>
                         <th scope="col">#</th>
