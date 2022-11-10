@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gradebook</title>    
+    <title>Gradebook | @yield('title')</title>    
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -26,16 +26,14 @@
         cursor: pointer;
       }
 
-      @media (min-width: 768px) {
+      @media (min-width: 767.98px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
       }
     </style>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
   </head>
@@ -47,61 +45,50 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <span class="w-100" type="text"></span>
-      <div class="navbar-nav">
-        <div class="nav-item text-nowrap">
-          <a class="nav-link px-3" href="{{ route('logout') }}"
-          onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">Sign out</a>
 
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-          </form>              
-        </div>
-      </div>
     </header>
 
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light collapse">
+      <div class="position-sticky pt-3 ">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link
-              @if(Request::getPathInfo() == '/')
-                active
-              @endif" href="/">
+          <li class="nav-item  menu">
+            <a class="nav-link text-dark" href="/">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           @if(Gate::check('isAdmin'))
           <li class="nav-item">
-          <a class="nav-link
-              @if(Request::getPathInfo() == '/users' || Request::getPathInfo() == '/users/register')
-                active
-              @endif" href="/users">
+          <a class="nav-link text-dark" href="/users">
               <span data-feather="users"></span>
               Users
             </a>
           </li>
           @endif
           <li class="nav-item">
-          <a class="nav-link
-              @if(Request::getPathInfo() == '/grades')
-                active
-              @endif" href="/grades">
+          <a class="nav-link text-dark" href="/grades">
               <span data-feather="grades"></span>
               Grades
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link
-              @if(Request::getPathInfo() == '/classes')
-                active
-              @endif" href="/classes">
+            <a class="nav-link text-dark" href="/classes">
               <span data-feather="classes"></span>
               Classes
             </a>
+          </li>
+          <li class="nav-item">
+            <div class="nav-item text-nowrap text-center">
+              <a class="nav-link px-3" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();"><img src="https://cdn-icons-png.flaticon.com/512/4034/4034229.png" style="width:32px;height:32px;"></a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>              
+            </div>
           </li>
         </ul>
       </div>
