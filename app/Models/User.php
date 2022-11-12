@@ -53,4 +53,7 @@ class User extends Authenticatable
     public function student_classes() :HasOne{
         return $this->hasOne(Student_classes::class);
     }
+    public function grades(): HasMany{
+        return $this->HasMany(Grades::class);
+    }
 }
