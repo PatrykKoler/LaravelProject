@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GradesController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\Auth\RegisterController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +32,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
         Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
         Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
-        Route::middleware(['can:isTeacher'])->group(function(){
-            Route::get('/classes/edit', [ClassesController::class, 'edit']);
-            Route::get('/grades/edit', [GradesController::class, 'edit']);
-            Route::get('/grades/add', [GradesController::class, 'create']);
-        });       
-    });
+    });   
+    Route::get('/classes/edit', [ClassesController::class, 'edit'])->middleware(['can:isAdmin', 'can:isTeacher']);
+    Route::get('/grades/edit', [GradesController::class, 'edit']);
+    Route::get('/grades/add', [GradesController::class, 'create']);
 });
 
