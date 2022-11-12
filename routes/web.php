@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GradesController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\Auth\RegisterController;
-use GuzzleHttp\Middleware;
+use Illuminate\Auth\Access\Gate;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
         Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
     });   
-    Route::get('/classes/edit', [ClassesController::class, 'edit'])->middleware(['can:isAdmin', 'can:isTeacher']);
+    Route::get('/classes/edit', [ClassesController::class, 'edit']);
     Route::get('/grades/edit', [GradesController::class, 'edit']);
     Route::get('/grades/add', [GradesController::class, 'create']);
 });
