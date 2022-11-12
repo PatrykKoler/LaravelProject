@@ -28,14 +28,14 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/users', [UserController::class, 'index']);
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
         Route::get('/users/register', [RegisterController::class, 'index']);
-        Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
-
-        Route::get('/classes/edit', [ClassesController::class, 'edit']);
-
-        Route::get('/grades/edit', [GradesController::class, 'edit']);
-        Route::get('/grades/add', [GradesController::class, 'create']);
-
+        Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::middleware(['can:isTeacher'])->group(function(){
+            Route::get('/classes/edit', [ClassesController::class, 'edit']);
+            Route::get('/grades/edit', [GradesController::class, 'edit']);
+            Route::get('/grades/add', [GradesController::class, 'create']);
+        });       
     });
 });
 
