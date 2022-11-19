@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Grades;
-use App\Models\Student_classes;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +22,7 @@ class GradesController extends Controller
         ->join('users','users.id' ,'=', 'grades.user_id')
         ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
         ->select('school_subjects.name as school_subject', 'users.name as student', 'teacher_classes.class_name','grades.id')
-        ->groupBy('school_subject', 'student', 'teacher_classes.class_name', 'grades.id')
+        ->groupBy('school_subject', 'student')
         ->orderBy('grades.teacher_classes_id')
         ->get();
 
@@ -61,8 +60,15 @@ class GradesController extends Controller
      */
     public function show(Grades $grades): View
     {
+        $grades_student = DB::table('grades') 
+        ->join('users','users.id' ,'=', 'grades.user_id')
+        ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
+        ->selectRaw('school_subjects.name as school_subject, users.name as student, note')
+        ->whereRaw('grades.user_id = ? and grades.school_subject_id = ?', [$grades->user_id, $grades->school_subject_id])
+        ->get();
+
         return view('grades.show', [
-            'grades'=> $grades
+            'grades'=> $grades_student
         ]);
     }
 

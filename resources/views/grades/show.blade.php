@@ -12,9 +12,9 @@
         <table class="table table-hover align-middle"> 
             <thead>
                 <tr>
-                    <th scope="col">Classes</th>
                     <th scope="col">School subject</th>
                     <th scope="col">Students</th>
+                    <th scope="col">Grades</th>
                     @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                       <th scope="col">Action</th>
                     @endif
@@ -23,13 +23,13 @@
             <tbody>
             @foreach($grades as $grade)
                 <tr>
-                    <td scope="row">{{$grade->class_name}}</td>
                     <td>{{$grade->school_subject}}</td>
                     <td>{{$grade->student}}</td>
+                    <td>{{$grade->note}}</td>
                     @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                     <td>
-                      <button class="btn btn-sm" onclick="window.location.href='{{ route('grades.show', $grade->id) }}';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
-                      
+                      <button class="btn btn-sm" onclick="window.location.href='/grades/edit';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+                      <button class="btn btn-sm" onclick="window.location.href='/grades/add';"><img src="https://cdn-icons-png.flaticon.com/512/1237/1237946.png" style="width:32px;height:32px;"></button>
                     </td>
                     @endif
                 </tr>     
