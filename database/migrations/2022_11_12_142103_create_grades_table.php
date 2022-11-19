@@ -19,8 +19,8 @@ class CreateGradesTable extends Migration
             $table->foreignId('school_subject_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->integer('note');
-
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

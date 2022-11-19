@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function(){
     });   
     Route::get('/classes/edit', [ClassesController::class, 'edit']);
     Route::get('/grades/edit', [GradesController::class, 'edit']);
+    Route::get('/grades/show/{grades}', [GradesController::class, 'show']);
     Route::get('/grades/add', [GradesController::class, 'create']);
 });
 

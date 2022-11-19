@@ -15,23 +15,17 @@
                     <th scope="col">Classes</th>
                     <th scope="col">School subject</th>
                     <th scope="col">Students</th>
-                    <th rowspan=3 scope="col">Grades</th>
                     @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                       <th scope="col">Action</th>
                     @endif
                 </tr>
             </thead>
-            @for ($i = 0; $i < 5; $i++)
             <tbody>
+            @foreach($grades as $grade)
                 <tr>
-                    <td scope="row">{{ $i }}B</td>
-                    <td>History</td>
-                    <td>student {{ $i }}</td>
-                    <td rowspan="0">
-                      <p class="bg-danger p-1 text-white bg-opacity-75" style="width: 32px;">1+</p>
-                      <p class="bg-danger p-1 text-white bg-opacity-75" style="width: 32px;">2+</p>
-                      <p class="bg-danger p-1 text-white bg-opacity-75" style="width: 32px;">3+</p>
-                    </td>
+                    <td scope="row">{{$grade->class_name}}</td>
+                    <td>{{$grade->school_subject}}</td>
+                    <td>{{$grade->student}}</td>
                     @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                     <td>
                       <button class="btn btn-sm" onclick="window.location.href='/grades/edit';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
@@ -40,7 +34,7 @@
                     @endif
                 </tr>     
             </tbody>
-            @endfor 
+            @endforeach
         </table>
         </div>
     </div> 
