@@ -18,7 +18,7 @@
                 <label for="subject" class="col-md-4 col-form-label text-md-end">{{ __('School subject') }}</label>
 
                 <div class="col-md-6">
-                    <input id="subject" type="text" class="form-control" name="school_subject_id" value="{{$grade[0]->school_subject}}" readonly>
+                    <input id="subject" type="text" class="form-control" name="school_subject_id" value="{{$grade[0]->school_subject}}" readonly disabled>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                 <label for="classes" class="col-md-4 col-form-label text-md-end">{{ __('Classes') }}</label>
 
                 <div class="col-md-6">
-                    <input id="classes" type="text" class="form-control" name="teacher_classes_id" value="{{$grade[0]->classes}}" readonly>
+                    <input id="classes" type="text" class="form-control" name="teacher_classes_id" value="{{$grade[0]->classes}}" readonly disabled>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                 <label for="student" class="col-md-4 col-form-label text-md-end">{{ __('Student') }}</label>
 
                 <div class="col-md-6">
-                    <input id="student" type="text" class="form-control" name="user_id" value="{{$grade[0]->student}}"  readonly>
+                    <input id="student" type="text" class="form-control" name="user_id" value="{{$grade[0]->student}}"  readonly disabled>
                 </div>
             </div>
 
