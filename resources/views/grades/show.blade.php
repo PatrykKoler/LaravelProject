@@ -26,7 +26,7 @@
                         <td>{{$grade->note}}</td>
                     @if(Gate::check('isAdmin') || Gate::check('isTeacher'))
                     <td>
-                      <button class="btn btn-sm" onclick="window.location.href='/grades/edit';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+                      <button class="btn btn-sm" onclick="window.location.href='{{route('grades.edit', $grade->id)}}';"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
                     </td>
                     @endif
                 </tr> 

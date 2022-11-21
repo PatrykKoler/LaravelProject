@@ -63,7 +63,7 @@ class GradesController extends Controller
         $grades_student = DB::table('grades') 
         ->join('users','users.id' ,'=', 'grades.user_id')
         ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
-        ->selectRaw('school_subjects.name as school_subject, users.name as student, note')
+        ->selectRaw('school_subjects.name as school_subject, users.name as student, note, grades.id')
         ->whereRaw('grades.user_id = ? and grades.school_subject_id = ?', [$grades->user_id, $grades->school_subject_id])
         ->get();
 
@@ -75,24 +75,49 @@ class GradesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Grades $grade
+     * @return View
      */
-    public function edit()
+    public function edit(Grades $grade): View
     {
-        return view('grades.edit');
+        $grade_student = DB::table('grades') 
+        ->join('teacher_classes','teacher_classes.id' ,'=', 'grades.teacher_classes_id')
+        ->join('users','users.id' ,'=', 'grades.user_id')
+        ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
+        ->selectRaw('grades.*, school_subjects.name as school_subject, users.name as student, note, teacher_classes.class_name as classes')
+        ->whereRaw('grades.id = ?',[$grade->id])
+        ->get();
+
+        return view('grades.edit',[
+            'grade'=> $grade_student
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ** @param  Request  $request
+     * @param  Grades $grade
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Grades $grade)
     {
-        //
+        //$grade->note = 4;
+        //dd($request->all());
+        $grade->fill($request->all());
+        $grade->save();
+
+        $grades = DB::table('grades') 
+        ->join('teacher_classes','teacher_classes.id' ,'=', 'grades.teacher_classes_id')
+        ->join('users','users.id' ,'=', 'grades.user_id')
+        ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
+        ->select('school_subjects.name as school_subject', 'users.name as student', 'teacher_classes.class_name','grades.id')
+        ->groupBy('school_subject', 'student')
+        ->orderBy('grades.teacher_classes_id')
+        ->get();
+
+        return view('grades.grades',[
+            'grades'=> $grades
+        ]);
     }
 
     /**
