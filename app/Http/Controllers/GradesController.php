@@ -36,20 +36,33 @@ class GradesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('grades.add');
+        $user = $request->session()->get('user');
+        $subject = $request->session()->get('subject');
+        $teacher = $request->session()->get('teacher');
+        $student = DB::table('grades') 
+        ->join('teacher_classes','teacher_classes.id' ,'=', 'grades.teacher_classes_id')
+        ->join('users','users.id' ,'=', 'grades.user_id')
+        ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
+        ->select('school_subjects.name as school_subject', 'users.name as student', 'teacher_classes.class_name', 'grades.user_id', 'grades.teacher_classes_id', 'grades.school_subject_id')
+        ->whereRaw('grades.user_id = ? and grades.teacher_classes_id = ? and grades.school_subject_id = ?', [$user, $teacher, $subject])
+        ->get();
+        return view('grades.add',[
+            'student'=> $student
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return 
      */
     public function store(Request $request)
     {
-        //
+        $grade = new Grades($request->all());
+        $grade->save();
     }
 
     /**
@@ -58,14 +71,18 @@ class GradesController extends Controller
      * @param  Grades $grades
      * @return View
      */
-    public function show(Grades $grades): View
+    public function show(Request $request, Grades $grades): View
     {
+        $request->session()->put('user', $grades->user_id);
+        $request->session()->put('subject', $grades->school_subject_id);
+        $request->session()->put('teacher', $grades->teacher_classes_id);
         $grades_student = DB::table('grades') 
         ->join('users','users.id' ,'=', 'grades.user_id')
         ->join('school_subjects','school_subjects.id' ,'=', 'grades.school_subject_id')
         ->selectRaw('school_subjects.name as school_subject, users.name as student, note, grades.id')
         ->whereRaw('grades.user_id = ? and grades.school_subject_id = ?', [$grades->user_id, $grades->school_subject_id])
         ->get();
+        
 
         return view('grades.show', [
             'grades'=> $grades_student

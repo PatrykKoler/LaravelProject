@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/grades/edit/{grade}', [GradesController::class, 'edit'])->name('grades.edit');
     Route::post('/grades/{grade}', [GradesController::class, 'update'])->name('grades.update');
     Route::get('/grades/show/{grades}', [GradesController::class, 'show'])->name('grades.show');
-    Route::get('/grades/add', [GradesController::class, 'create']);
+    Route::get('/grades/add', [GradesController::class, 'create'])->name('grades.add');
+    Route::post('/grades', [GradesController::class, 'store'])->name('grades.store');
 });
 
