@@ -33,7 +33,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
         Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
     });   
-    Route::get('/classes/edit', [ClassesController::class, 'edit']);
+    Route::get('/classes/edit/{class}', [ClassesController::class, 'edit'])->name('classes.edit');
+    Route::get('/classes/{class}', [ClassesController::class, 'update'])->name('classes.update');
     Route::get('/grades/edit/{grade}', [GradesController::class, 'edit'])->name('grades.edit');
     Route::post('/grades/{grade}', [GradesController::class, 'update'])->name('grades.update');
     Route::get('/grades/show/{grades}', [GradesController::class, 'show'])->name('grades.show');

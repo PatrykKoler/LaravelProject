@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClassesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        return view('classes.classes');
+        $classes = DB::table('teacher_classes')
+        ->join('users','users.id' ,'=', 'teacher_classes.user_id')
+        ->select('class_name', 'users.name as teacher', 'teacher_classes.id')
+        ->get();
+        return view('classes.classes',[
+            'classes' => $classes
+        ]);
     }
 
     /**
@@ -53,9 +61,9 @@ class ClassesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function edit()
+    public function edit(): View
     {
         return view('classes.edit');
     }

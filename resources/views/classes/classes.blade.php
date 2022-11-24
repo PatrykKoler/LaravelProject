@@ -14,26 +14,24 @@
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Supervising teacher</th>
-                    <th rowspan="3" scope="col">Students</th><!-- rowspan tyle ile uczniow w klasie -->
                     @if(Gate::check('isAdmin'))
                       <th scope="col">Action</th>
                     @endif
                 </tr>
             </thead>
-            @for ($i = 0; $i < 5; $i++)
             <tbody>
+              @foreach($classes as $class)
                 <tr>
-                    <td scope="row">{{ $i }}B</td>
-                    <td>Teacher {{ $i }}</td>
-                    <td rowspan="0">student {{ $i }}<br>student {{ $i+1 }}<br>student {{ $i+2 }}</td><!-- rowspan tyle ile uczniow w klasie -->
+                    <td scope="row">{{$class->class_name}}</td>
+                    <td>{{$class->teacher}}</td>
                     @if(Gate::check('isAdmin'))
                     <td>
-                      <button class="btn btn-sm" onclick="window.location.href='/classes/edit'"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+                      <button class="btn btn-sm" onclick="window.location.href='{{ route('classes.edit', $class->id) }}'"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
                     </td>
                     @endif
-                </tr>   
+                </tr>  
+              @endforeach
             </tbody>
-            @endfor 
         </table>
         </div>
     </div> 

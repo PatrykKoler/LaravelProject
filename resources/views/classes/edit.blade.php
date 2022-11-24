@@ -11,7 +11,7 @@
                 </a>
             </div>
         </div>
-        <form method="POST" action="{{ route('users.store') }}">
+        <form method="POST" action="{{ route('classes.update') }}">
             @csrf
 
             <div class="row mb-3">
