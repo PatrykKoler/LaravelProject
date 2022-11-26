@@ -34,7 +34,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
     });   
     Route::get('/classes/edit/{class}', [ClassesController::class, 'edit'])->name('classes.edit');
-    Route::get('/classes/{class}', [ClassesController::class, 'update'])->name('classes.update');
+    Route::post('/classes/{class}', [ClassesController::class, 'update'])->name('classes.update');
+    Route::get('/classes/add', [ClassesController::class, 'create'])->name('classes.create');
+    Route::post('/classes', [ClassesController::class, 'store'])->name('classes.store');
     Route::get('/grades/edit/{grade}', [GradesController::class, 'edit'])->name('grades.edit');
     Route::post('/grades/{grade}', [GradesController::class, 'update'])->name('grades.update');
     Route::get('/grades/show/{grades}', [GradesController::class, 'show'])->name('grades.show');
