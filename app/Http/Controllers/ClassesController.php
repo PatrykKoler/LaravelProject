@@ -28,6 +28,21 @@ class ClassesController extends Controller
             'classes' => $classes
         ]);
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createClass(Request $request)
+    { 
+        $users = DB::table('users')
+        ->select('name', 'id')
+        ->whereRaw("role = 'teacher'")
+        ->get();
+        return view('classes.addclass',[
+            'teachers' => $users,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -67,6 +82,19 @@ class ClassesController extends Controller
     {
         $student_classes = new Student_classes($request->all());
         $student_classes->save();
+        $classes = DB::table('teacher_classes')
+        ->join('users','users.id' ,'=', 'teacher_classes.user_id')
+        ->select('class_name', 'users.name as teacher', 'teacher_classes.id')
+        ->get();
+        return view('classes.classes',[
+            'classes' => $classes
+        ]);
+
+    }
+    public function storeClass(Request $request)
+    {
+        $Teacher_classes = new Teacher_classes($request->all());
+        $Teacher_classes->save();
         $classes = DB::table('teacher_classes')
         ->join('users','users.id' ,'=', 'teacher_classes.user_id')
         ->select('class_name', 'users.name as teacher', 'teacher_classes.id')
