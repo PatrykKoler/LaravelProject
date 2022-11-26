@@ -21,7 +21,7 @@
                 <label for="classes" class="col-md-4 col-form-label text-md-end">{{ __('Classes') }}</label>
 
                 <div class="col-md-6">
-                    <input id="class_name" type="text" class="form-control" name="class_name" value="{{$classes[0]->class_name}}" disabled>
+                    <input id="class_name" type="text" class="form-control" name="class_name" value="{{$classes[0]->class_name}}">
                 </div>
             </div>
 
