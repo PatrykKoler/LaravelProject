@@ -21,7 +21,7 @@
                 <label for="classes" class="col-md-4 col-form-label text-md-end">{{ __('Classes') }}</label>
 
                 <div class="col-md-6">
-                    <input id="classes" type="text" class="form-control" name="classes" value="{{$classes[0]->class_name}}" disabled>
+                    <input id="class_name" type="text" class="form-control" name="class_name" value="{{$classes[0]->class_name}}" disabled>
                 </div>
             </div>
 
@@ -29,10 +29,10 @@
                 <label for="teacher" class="col-md-4 col-form-label text-md-end">{{ __('Supervising teacher') }}</label>
 
                 <div class="col-md-3 p-1">
-                    <select id="teacher" type="text" class="form-select" name="teacher"  value="{{$classes[0]->teacher}}" readonly required>
+                    <select id="user_id" type="text" class="form-select" name="user_id" value="{{$classes[0]->teacher}}" readonly required>
                         <option disabled>teacher</option>
                         @foreach($teachers as $teacher)
-                            <option value="{{$teacher->name}}"@if($classes[0]->teacher == $teacher->name) selected @endif>{{$teacher->name}}</option>
+                            <option value="{{$teacher->id}}"@if($classes[0]->teacher == $teacher->name) selected @endif>{{$teacher->name}}</option>
                         @endforeach
                     </select>
                 </div>

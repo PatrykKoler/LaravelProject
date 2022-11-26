@@ -93,11 +93,9 @@ class ClassesController extends Controller
      *
      * @param  Request $request
      * @param  Teacher_classes $class
-     * @param  ser $users
-     * @param  Student_classes $student_classes
      * @return View
      */
-    public function edit(Request $request, Teacher_classes $class, User $users, Student_classes $student_classes): View
+    public function edit(Request $request, Teacher_classes $class): View
     {
         $classes = DB::table('teacher_classes')
         ->join('users','users.id' ,'=', 'teacher_classes.user_id')
@@ -128,13 +126,21 @@ class ClassesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Teacher_classes $teacher_classes
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Teacher_classes $class)
     {
-        //
+        $class->fill($request->all());
+        $class->save();
+
+        $classes = DB::table('teacher_classes')
+        ->join('users','users.id' ,'=', 'teacher_classes.user_id')
+        ->select('class_name', 'users.name as teacher', 'teacher_classes.id')
+        ->get();
+        return view('classes.classes',[
+            'classes' => $classes
+        ]);
     }
 
     /**

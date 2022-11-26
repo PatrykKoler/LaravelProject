@@ -131,7 +131,6 @@ class GradesController extends Controller
      */
     public function update(Request $request, Grades $grade)
     {
-        //$grade->note = 4;
         //dd($request->all());
         $grade->fill($request->all());
         $grade->save();
