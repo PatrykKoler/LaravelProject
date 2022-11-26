@@ -52,11 +52,10 @@ class ClassesController extends Controller
     public function create(Request $request)
     {
         $teacher_classes_id = $request->session()->get('teacher_classes_id');
-        $class_id = DB::table('student_classes')
-        ->select('teacher_classes_id', 'teacher_classes.class_name')
-        ->join('teacher_classes','teacher_classes_id' ,'=', 'teacher_classes.id')
-        ->join('users','users.id' ,'=', 'student_classes.user_id')
-        ->whereRaw('teacher_classes_id = ?',[$teacher_classes_id])
+        $class_id = DB::table('teacher_classes')
+        ->select('teacher_classes.id', 'teacher_classes.class_name')
+        ->join('users','users.id' ,'=', 'teacher_classes.user_id')
+        ->whereRaw('teacher_classes.id = ?',[$teacher_classes_id])
         ->get();
 
         $students = DB::table('users')

@@ -19,7 +19,7 @@
 
                 <div class="col-md-6">
                     <input id="classes" type="text" class="form-control" name="class" value="{{$class[0]->class_name}}" disabled>
-                    <input id="teacher_classes_id" type="text" class="form-control" name="teacher_classes_id" value="{{$class[0]->teacher_classes_id}}" hidden>
+                    <input id="teacher_classes_id" type="text" class="form-control" name="teacher_classes_id" value="{{$class[0]->id}}" hidden>
                 </div>
             </div>
             <div class="row mb-3">
