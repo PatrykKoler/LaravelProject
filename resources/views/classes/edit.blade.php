@@ -72,4 +72,20 @@
             </table>
         </div>
     </div>
-@endsection  
+@endsection
+@section('javascript')
+$(document).ready(function () {
+    $('.delete').click(function() {
+        $.ajax({
+            type: 'DELETE',
+            url: "./delete/" + $(this).data("id")
+        })
+        .done(function(response) {
+            window.location.reload();
+        })
+        .fail(function (response) {
+            alert("ERROR");
+        });
+    });
+});
+@endsection 

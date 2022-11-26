@@ -46,8 +46,9 @@ class ClassesController extends Controller
 
         $students = DB::table('users')
         ->select('users.id', 'users.name')
+        ->distinct()
         ->leftJoin('student_classes','student_classes.user_id' ,'=', 'users.id')
-        ->whereRaw("role = 'student' and student_classes.user_id is null")
+        ->whereRaw("role = 'student' and student_classes.user_id is null or student_classes.deleted_at is NOT NULL")
         ->get();
         
         return view('classes.add',[
@@ -66,6 +67,14 @@ class ClassesController extends Controller
     {
         $student_classes = new Student_classes($request->all());
         $student_classes->save();
+        $classes = DB::table('teacher_classes')
+        ->join('users','users.id' ,'=', 'teacher_classes.user_id')
+        ->select('class_name', 'users.name as teacher', 'teacher_classes.id')
+        ->get();
+        return view('classes.classes',[
+            'classes' => $classes
+        ]);
+
     }
 
     /**
@@ -106,7 +115,7 @@ class ClassesController extends Controller
         ->select('student_classes.id', 'users.name')
         ->join('teacher_classes','teacher_classes_id' ,'=', 'teacher_classes.id')
         ->join('users','users.id' ,'=', 'student_classes.user_id')
-        ->whereRaw('teacher_classes_id = ?',[$class->id])
+        ->whereRaw('teacher_classes_id = ? and student_classes.deleted_at is NULL',[$class->id])
         ->get();
 
         return view('classes.edit',[
@@ -136,6 +145,10 @@ class ClassesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $flight = Student_classes::find($id);
+        $flight->delete();
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }
