@@ -18,15 +18,15 @@
                 <label for="classes" class="col-md-4 col-form-label text-md-end">{{ __('Classes') }}</label>
 
                 <div class="col-md-6">
-                    <input id="classes" type="text" class="form-control" name="class" value="{{$class[0]->class_name}}" disabled>
-                    <input id="teacher_classes_id" type="text" class="form-control" name="teacher_classes_id" value="{{$class[0]->id}}" hidden>
+                    <input id="classes" type="text" class="form-control" name="class" value="{{$class_name}}" disabled>
+                    <input id="teacher_classes_id" type="text" class="form-control" name="teacher_classes_id" value="{{$teacher_classes_id}}" hidden>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('Student') }}</label>
 
                 <div class="col-md-3 p-1">
-                    <select id="user_id" type="text" class="form-select" name="user_id" value="{{$students[0]->name}}" readonly required>
+                    <select id="user_id" type="text" class="form-select" name="user_id" value="" readonly required>
                         <option disabled selected>student</option>
                         @foreach($students as $student)
                             <option value="{{$student->id}}">{{$student->name}}</option>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Student_classes;
 use App\Models\Teacher_classes;
-use App\Models\User;
-use App\Models\Users;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,11 +45,12 @@ class ClassesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         $teacher_classes_id = $request->session()->get('teacher_classes_id');
+        $class_name = $request->session()->get('class_name');
         $class_id = DB::table('teacher_classes')
         ->select('teacher_classes.id', 'teacher_classes.class_name')
         ->join('users','users.id' ,'=', 'teacher_classes.user_id')
@@ -62,10 +61,12 @@ class ClassesController extends Controller
         ->select('users.id', 'users.name')
         ->distinct()
         ->leftJoin('student_classes','student_classes.user_id' ,'=', 'users.id')
-        ->whereRaw("role = 'student' and student_classes.user_id is null or student_classes.deleted_at is NOT NULL")
+        ->whereRaw("role = 'student' and student_classes.user_id is null")
         ->get();
         
         return view('classes.add',[
+            'class_name' => $class_name,
+            'teacher_classes_id' => $teacher_classes_id,
             'class' => $class_id,
             'students' => $students
         ]);
@@ -130,6 +131,7 @@ class ClassesController extends Controller
         ->whereRaw('teacher_classes.id = ?',[$class->id])
         ->get();
         $request->session()->put('teacher_classes_id', $class->id);
+        $request->session()->put('class_name', $class->class_name);
 
         $users = DB::table('users')
         ->select('name', 'id')
@@ -140,7 +142,7 @@ class ClassesController extends Controller
         ->select('student_classes.id', 'users.name')
         ->join('teacher_classes','teacher_classes_id' ,'=', 'teacher_classes.id')
         ->join('users','users.id' ,'=', 'student_classes.user_id')
-        ->whereRaw('teacher_classes_id = ? and student_classes.deleted_at is NULL',[$class->id])
+        ->whereRaw('teacher_classes_id = ?',[$class->id])
         ->get();
 
         return view('classes.edit',[
