@@ -11,14 +11,19 @@
                 </a>
             </div>
         </div>
-        <form method="POST" action="{{ route('users.store') }}">
+        <form method="POST" action="{{ route('grades.store') }}">
             @csrf
 
             <div class="row mb-3">
                 <label for="subject" class="col-md-4 col-form-label text-md-end">{{ __('School subject') }}</label>
 
                 <div class="col-md-6">
-                    <input id="subject" type="text" class="form-control" name="subject" value="History" disabled>
+                    <select id="school_subject_id" type="text" class="form-select" name="school_subject_id" value="" required>
+                        <option disabled>Subject</option>
+                        @foreach($subjects as $subject)
+                            <option value="{{$subject->id}}"@if($subject->id == $student[0]->school_subject_id) selected @endif>{{$subject->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
@@ -26,7 +31,8 @@
                 <label for="classes" class="col-md-4 col-form-label text-md-end">{{ __('Classes') }}</label>
 
                 <div class="col-md-6">
-                    <input id="classes" type="text" class="form-control" name="classes" value="1B" disabled>
+                    <input id="class_name" type="text" class="form-control" name="class_name" value="{{$student[0]->class_name}}" disabled>
+                    <input id="teacher_classes_id" type="text" class="form-control" name="teacher_classes_id" value="{{$student[0]->teacher_classes_id}}" hidden>
                 </div>
             </div>
 
@@ -34,14 +40,14 @@
                 <label for="student" class="col-md-4 col-form-label text-md-end">{{ __('Student') }}</label>
 
                 <div class="col-md-6">
-                    <input id="student" type="text" class="form-control" name="student" value="Student 1" disabled>
+                    <input id="student" type="text" class="form-control" name="student" value="{{$student[0]->student}}" disabled>
+                    <input id="user_id" type="text" class="form-control" name="user_id" value="{{$student[0]->user_id}}" hidden>
                 </div>
             </div>
-
             <div class="row mb-1">
                 <label for="grades" class="col-md-4 col-form-label text-md-end">{{ __('Grades') }}</label>
                 <div class="col-md-1 p-1">
-                    <select id="grades" type="text" class="form-select" name="grades"  value="" readonly required>
+                    <select id="note" type="text" class="form-select @error('note') is-invalid @enderror" name="note" required>
                         <option value disabled selected>Grade</option>
                         @for ($i = 1; $i <= 6; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>

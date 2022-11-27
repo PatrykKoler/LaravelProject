@@ -79,6 +79,7 @@ class UserController extends Controller
     {
         $user->fill($request->all());
         $user->save();
+
         return view('users.users', [
             'users' => User::all(),
             'usersDelete'=> User::onlyTrashed()->get(),

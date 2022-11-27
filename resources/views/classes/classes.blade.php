@@ -5,8 +5,12 @@
 @section('body')
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Classes</h1>
+        <div class="col-6">
+          <a class="float-end p-2" href="{{route('classes.createClass')}}">
+            <img src="https://cdn-icons-png.flaticon.com/32/1387/1387940.png" style="width:32px;height:32px;">
+          </a>
+        </div>
       </div>
-
       <div class="container">
         <div class="row">
         <table class="table table-hover align-middle"> 
@@ -14,26 +18,24 @@
                 <tr>
                     <th scope="col">Class</th>
                     <th scope="col">Supervising teacher</th>
-                    <th rowspan="3" scope="col">Students</th><!-- rowspan tyle ile uczniow w klasie -->
                     @if(Gate::check('isAdmin'))
                       <th scope="col">Action</th>
                     @endif
                 </tr>
             </thead>
-            @for ($i = 0; $i < 5; $i++)
             <tbody>
+              @foreach($classes as $class)
                 <tr>
-                    <td scope="row">{{ $i }}B</td>
-                    <td>Teacher {{ $i }}</td>
-                    <td rowspan="0">student {{ $i }}<br>student {{ $i+1 }}<br>student {{ $i+2 }}</td><!-- rowspan tyle ile uczniow w klasie -->
+                    <td scope="row">{{$class->class_name}}</td>
+                    <td>{{$class->teacher}}</td>
                     @if(Gate::check('isAdmin'))
                     <td>
-                      <button class="btn btn-sm" onclick="window.location.href='/classes/edit'"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
+                      <button class="btn btn-sm" onclick="window.location.href='{{ route('classes.edit', $class->id) }}'"><img src="https://cdn-icons-png.flaticon.com/32/650/650143.png" style="width:32px;height:32px;"></button>
                     </td>
                     @endif
-                </tr>   
+                </tr>  
+              @endforeach
             </tbody>
-            @endfor 
         </table>
         </div>
     </div> 

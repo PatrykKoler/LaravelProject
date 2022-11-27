@@ -33,9 +33,17 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
         Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
     });   
-    Route::get('/classes/edit', [ClassesController::class, 'edit']);
-    Route::get('/grades/edit', [GradesController::class, 'edit']);
+    Route::get('/classes/edit/{class}', [ClassesController::class, 'edit'])->name('classes.edit');
+    Route::post('/classes/{class}', [ClassesController::class, 'update'])->name('classes.update');
+    Route::get('/classes/add', [ClassesController::class, 'create'])->name('classes.create');
+    Route::post('/class', [ClassesController::class, 'store'])->name('classes.store');
+    Route::get('/classes/createclass', [ClassesController::class, 'createClass'])->name('classes.createClass');
+    Route::post('/classes', [ClassesController::class, 'storeClass'])->name('classes.storeClass');
+    Route::delete('/classes/edit/delete/{id}', [ClassesController::class, 'destroy']);
+    Route::get('/grades/edit/{grade}', [GradesController::class, 'edit'])->name('grades.edit');
+    Route::post('/grades/{grade}', [GradesController::class, 'update'])->name('grades.update');
     Route::get('/grades/show/{grades}', [GradesController::class, 'show'])->name('grades.show');
-    Route::get('/grades/add', [GradesController::class, 'create']);
+    Route::get('/grades/add', [GradesController::class, 'create'])->name('grades.add');
+    Route::post('/grades', [GradesController::class, 'store'])->name('grades.store');
 });
 
