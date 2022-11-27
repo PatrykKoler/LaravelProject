@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Grades;
+use App\Models\School_subject;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +50,8 @@ class GradesController extends Controller
         ->whereRaw('grades.user_id = ? and grades.teacher_classes_id = ? and grades.school_subject_id = ?', [$user, $teacher, $subject])
         ->get();
         return view('grades.add',[
-            'student'=> $student
+            'student'=> $student,
+            'subjects' =>School_subject::all()
         ]);
     }
 

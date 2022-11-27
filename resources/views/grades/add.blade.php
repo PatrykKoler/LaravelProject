@@ -18,8 +18,12 @@
                 <label for="subject" class="col-md-4 col-form-label text-md-end">{{ __('School subject') }}</label>
 
                 <div class="col-md-6">
-                    <input id="school_subject" type="text" class="form-control" name="school_subject" value="{{$student[0]->school_subject}}" disabled>
-                    <input id="school_subject_id" type="text"  class="form-control" name="school_subject_id" value="{{$student[0]->school_subject_id}}" hidden>
+                    <select id="school_subject_id" type="text" class="form-select" name="school_subject_id" value="" required>
+                        <option disabled>Subject</option>
+                        @foreach($subjects as $subject)
+                            <option value="{{$subject->id}}"@if($subject->id == $student[0]->school_subject_id) selected @endif>{{$subject->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
