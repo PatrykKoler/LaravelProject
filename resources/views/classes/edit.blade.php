@@ -57,9 +57,9 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach($students as $student)
+            @foreach($students as $key=>$student)
                 <tr>
-                    <td scope="row">1</td>
+                    <td scope="row" value={{$key++}}>{{$key}}</td>
                     <td>{{$student->name}}</td>
                     @if(Gate::check('isAdmin'))
                     <td>
@@ -67,7 +67,7 @@
                     </td>
                     @endif
                 </tr>  
-              @endforeach
+            @endforeach
             </tbody>
             </table>
         </div>

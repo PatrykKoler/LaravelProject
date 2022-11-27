@@ -38,28 +38,4 @@
         </table>
         </div>
     </div> 
-
-      @if(Gate::check('isAdmin'))
-      <div class="container text-center">
-        <div class="row align-items-center">
-          #TODO edycja ocen | nowa, zmiana, usuniecie
-        </div>
-      </div>
-      @endif
-
-      @if(Gate::check('isTeacher'))
-      <div class="container text-center">
-        <div class="row align-items-center">
-          #TODO edycja ocen | nowa, zmiana
-        </div>
-      </div>
-      @endif
-
-      @if(Gate::check('isStudent'))
-      <div class="container text-center">
-        <div class="row align-items-center">
-          #TODO wglad do swoich ocen
-        </div>
-      </div>
-      @endif
 @endsection  

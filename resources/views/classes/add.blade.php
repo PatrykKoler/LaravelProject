@@ -22,10 +22,11 @@
                     <input id="teacher_classes_id" type="text" class="form-control" name="teacher_classes_id" value="{{$teacher_classes_id}}" hidden>
                 </div>
             </div>
+
             <div class="row mb-3">
                 <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('Student') }}</label>
 
-                <div class="col-md-3 p-1">
+                <div class="col-md-3">
                     <select id="user_id" type="text" class="form-select" name="user_id" value="" readonly required>
                         <option disabled selected>student</option>
                         @foreach($students as $student)
@@ -34,6 +35,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="row mb-3">
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
@@ -43,6 +45,7 @@
                     </div>
                 </div>
             </div>
+
         </form>
         <hr>
     </div>

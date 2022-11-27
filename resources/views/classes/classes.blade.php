@@ -6,9 +6,11 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Classes</h1>
         <div class="col-6">
+          @if(Gate::check('isAdmin'))
           <a class="float-end p-2" href="{{route('classes.createClass')}}">
             <img src="https://cdn-icons-png.flaticon.com/32/1387/1387940.png" style="width:32px;height:32px;">
           </a>
+          @endif
         </div>
       </div>
       <div class="container">
@@ -39,23 +41,4 @@
         </table>
         </div>
     </div> 
-
-      #TODO modyfikacja routingu do classes/edit
-
-      @if(Gate::check('isAdmin'))
-      <div class="container text-center">
-        <div class="row align-items-center">
-          #TODO edycja wychowawcy, uczniów, nazwy klasy
-        </div>
-      </div>
-      @endif
-
-      @if(Gate::check('isTeacher') || Gate::check('isStudent'))
-      <div class="container text-center">
-        <div class="row align-items-center">
-          #TODO podglad do swojej klasy / nauczyciel jako wychowawca tej klasy
-        </div>
-      </div>
-      @endif
-
 @endsection   
