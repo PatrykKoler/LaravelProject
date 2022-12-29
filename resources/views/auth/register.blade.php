@@ -90,5 +90,4 @@
                 </div>
             </div>
         </form>
-        #odpowiedni komunikatem o stworzeniu użytkownika
 @endsection  
